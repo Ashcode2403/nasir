@@ -880,6 +880,52 @@ footer {
     </div>
   </section>
 
+  <!-- RSVP -->
+<section class="invite-section reveal" style="padding-bottom: 20px;">
+  <p class="section-label">Join Us</p>
+  <h2 class="section-title">Will You Attend?</h2>
+  <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--amber-glow); margin: 8px 0 24px; font-size:1.1rem;">
+    If yes, a surprise is waiting for you 🎁
+  </p>
+  <div class="gold-line"></div>
+
+  <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 14px; max-width: 420px; margin-left: auto; margin-right: auto;">
+    
+    <button onclick="handleRSVP('yes')" id="btn-yes" style="
+      display: flex; align-items: center; gap: 16px;
+      background: var(--dusk-blue); border: 1px solid var(--steel-blue);
+      border-radius: 14px; padding: 20px 24px; cursor: pointer;
+      color: var(--cream); font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; text-align: left; transition: border-color 0.3s, background 0.3s;
+      width: 100%;
+    ">
+      <span style="width:36px;height:36px;border-radius:50%;background:rgba(72,199,142,0.15);
+        border:1px solid #48c78e; display:flex;align-items:center;justify-content:center;
+        font-size:1rem; flex-shrink:0;">✓</span>
+      <span style="color: var(--cream);">Yes, In Sha Allah! 😍</span>
+    </button>
+
+    <button onclick="handleRSVP('no')" id="btn-no" style="
+      display: flex; align-items: center; gap: 16px;
+      background: var(--dusk-blue); border: 1px solid var(--steel-blue);
+      border-radius: 14px; padding: 20px 24px; cursor: pointer;
+      color: var(--rain-silver); font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic; text-align: left; transition: border-color 0.3s, background 0.3s;
+      width: 100%;
+    ">
+      <span style="width:36px;height:36px;border-radius:50%;background:rgba(232,100,100,0.12);
+        border:1px solid #e86464; display:flex;align-items:center;justify-content:center;
+        font-size:1rem; flex-shrink:0;">✕</span>
+      <span>Unfortunately, I can't make it</span>
+    </button>
+
+  </div>
+
+  <p id="rsvp-msg" style="margin-top: 20px; font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem; color:var(--amber-soft); opacity:0; transition: opacity 0.5s;"></p>
+</section>
+
+
   <!-- GALLERY -->
   <section class="gallery-section reveal">
     <p class="section-label">Captured Moments</p>
@@ -1015,6 +1061,27 @@ document.addEventListener("click", () => {
     music.play();
 }, { once: true });
 
+/* ─── RSVP ─── */
+function handleRSVP(choice) {
+  const msg = document.getElementById('rsvp-msg');
+  const btnYes = document.getElementById('btn-yes');
+  const btnNo = document.getElementById('btn-no');
+
+  if (choice === 'yes') {
+    btnYes.style.borderColor = '#48c78e';
+    btnYes.style.background = 'rgba(72,199,142,0.08)';
+    btnNo.style.opacity = '0.4';
+    msg.textContent = '🎉 Jazakallah Khair! We look forward to celebrating with you!';
+  } else {
+    btnNo.style.borderColor = '#e86464';
+    btnNo.style.background = 'rgba(232,100,100,0.08)';
+    btnYes.style.opacity = '0.4';
+    msg.textContent = '🤍 JazakAllah. May Allah bless you always.';
+  }
+  msg.style.opacity = '1';
+}
+
+  
 </script>
 </body>
 </html>
